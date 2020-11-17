@@ -17,7 +17,7 @@ SRR5564862
 SRR5564863"
 
 #Running the trimomatic on the data
-primer_sequence="data/mydatalocal/TP-NGS-Nematode/primers.fasta"
+primer_sequence="/home/rstudio/data/mydatalocal/TP-NGS-Nematode/primers.fasta"
 cd $DataDirectory
 cd ../
 mkdir -p sra_trimmed_data_test
@@ -34,8 +34,6 @@ do
   java -jar /softwares/Trimmomatic-0.39/trimmomatic-0.39.jar \
   PE -phred33 $nom1 $nom2 \
   $paired_output_1 $unpaired_output_1 $paired_output_2 $unpaired_output_2 \
-  ILLUMINACLIP:primers.fasta:2:30:10:2:keepBothReads \
+  ILLUMINACLIP:$primer_sequence:2:30:10:2:keepBothReads \
   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15
 done
-
-
