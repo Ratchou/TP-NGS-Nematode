@@ -13,4 +13,5 @@ done
 
 #analyse multiqc
 
-multiqc --outdir /home/rstudio/data/mydatalocal/data/sra_data_test_quality/ /home/rstudio/data/mydatalocal/data/sra_data_test_quality/
+multiqc --outdir /home/rstudio/data/mydatalocal/data/sra_data_test_quality/ \
+/home/rstudio/data/mydatalocal/data/sra_data_test_quality/
