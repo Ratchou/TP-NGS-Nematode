@@ -27,7 +27,11 @@ SRR5564863"
 
 for accession in $SRR
 do
-  fastq-dump --split-3 --gzip --defline-seq '@$ac_$si/$ri' --defline-qual "+" $i
+  start=$SECONDS
+  fastq-dump --split-3 --gzip --defline-seq '@$ac_$si/$ri' --defline-qual "+" $accession
+  end=$SECONDS
+  Time=$(((end - start)/60))
+  echo "$accession $Time" >> time.txt
 done
 
 # Checking the file
