@@ -22,17 +22,12 @@ SRR5564860
 SRR5564861
 SRR5564862
 SRR5564863"
-
 # For each SRR accession, download the data :
 
 for accession in $SRR
 do
-  start=$SECONDS
   fastq-dump --split-3 --gzip --defline-seq '@$ac_$si/$ri' --defline-qual "+" $accession
-  end=$SECONDS
-  Time=$(((end - start)/60))
-  echo "$accession $Time" >> time.txt
-done
+  done
 
 # Checking the file
 
