@@ -17,18 +17,23 @@ However, *C. elegans* is a fast developing organism (65 hours), thus, a classic 
 
 ### Bash tools
 * sratoolkit.2.10.0
+
 [https://hpc.nih.gov/apps/sratoolkit.html](https://hpc.nih.gov/apps/sratoolkit.html)
 * FastQC v0.11.8
+
 [https://www.bioinformatics.babraham.ac.uk/projects/fastqc/](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 * multiqc version 1.9
+
 [https://multiqc.info/](https://multiqc.info/)
 * Trimmomatic version 0.39
+
 [http://www.usadellab.org/cms/?page=trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
 * salmon 0.14.1
+
 [https://combine-lab.github.io/salmon/](https://combine-lab.github.io/salmon/)
 
 ### R and R packages
-*R version 4.0.3
+* R version 4.0.3
 
 ### OS
 The analysis was performed on Ubuntu 20.04 LTS.
