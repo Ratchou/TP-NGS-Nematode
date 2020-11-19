@@ -25,7 +25,7 @@ Rq: the download of the last file stopped with an error report. It was run again
 ## Quality analysis of the data
 
 Data quality was analysed using `fastqc` and visualised using `multiqc` (see script fastqc_data.sh).
-The Multiqc quality report can be visualized [here].
+The Multiqc quality report can be visualized [here](https://github.com/Ratchou/TP-NGS-Nematode/blob/master/multiqc_report.html).
 It shows the presence of adapter sequences.
 
 ## Sequence cleaning 
@@ -33,7 +33,7 @@ It shows the presence of adapter sequences.
 Sequence cleaning was performed using the `trimmomatic` tool with the option `-phred33` and the steps `ILLUMINACLIP:$primer_sequence:2:30:10:2:keepBothReads`, `LEADING:3`, `TRAILING:3`, and `SLIDINGWINDOW:4:15`.
 The contents of the file `$primer_sequence` are available [here]. 
 Data quality was analysed as in the previous section (see script fastqc_trimmed_data.sh)
-The Multiqc quality report can be visualized [here].
+The Multiqc quality report can be visualized [here](https://github.com/Ratchou/TP-NGS-Nematode/blob/master/multiqc_report2.html).
 
 ## Transcript expression quantification
 The transcriptome of C. elegans was downloaded from [ensembldatabase](https://www.ensembl.org/index.html):
@@ -42,4 +42,4 @@ The transcriptome of C. elegans was downloaded from [ensembldatabase](https://ww
 It was indexed using the `index` option of salmon (transcriptome_download.sh)
 
 Transcript expression quantification was performed using the `salmon` tool (see salmon.sh script), letting `salmon` automatically detect the library type of sequencing reads (`-lA` option), and giving as input the index previously generated on the transcriptome data and the two trimmed files generated for each sample.
-The output data can analysis can be seen [here]. 
+The output data can analysis can be seen [here](https://github.com/Ratchou/TP-NGS-Nematode/blob/master/multiqc_report3.html). 
