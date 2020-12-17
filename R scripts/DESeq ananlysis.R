@@ -47,5 +47,5 @@ write.table(cbind(rownames(resSig1_UR)), row.names = F, col.names = F, quote = F
             file="alg1_upregulated_genes.csv")
 write.table(cbind(rownames(resSig5_DR)), row.names = F, col.names = F, quote = FALSE,
           file="alg5_downregulated_genes.csv")
-write.table(cbind(rownames(resSig5_DR)), row.names = F, col.names = F, quote = FALSE,
+write.table(cbind(rownames(resSig5_UR)), row.names = F, col.names = F, quote = FALSE,
             file="alg5_upregulated_genes.csv")
