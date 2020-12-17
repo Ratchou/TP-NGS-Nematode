@@ -21,4 +21,25 @@ txi.salmon <- tximport(files, type = "salmon", tx2gene = wormRef::Cel_genes[, c(
 head(txi.salmon$counts)
 
 
+logcounts <- log1p(txi.salmon$counts)
+head(logcounts)
+plot(logcounts[,1], logcounts[,2], 
+     main = "WT1 vs WT2", xlab = "WT1", ylab = "WT2")
+
+
+#log representation of counts
+logcounts <- log1p(txi.salmon$counts)
+
+par(mfrow = c(1,2))
+plot(logcounts[, 1], logcounts[, 2], 
+     main = "1 vs 2", xlab = "1", ylab = "2")
+
+plot(logcounts[, 1], logcounts[, 5], 
+     main = "1 vs 5", xlab = "1", ylab = "5")
+
+vargenes <- apply(logcounts, 1, var)
+avggenes <- apply(logcounts, 1, mean)
+
+plot(avggenes, vargenes)
+
 
