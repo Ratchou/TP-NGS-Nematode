@@ -27,24 +27,20 @@ names(files) <- (sample_names$sample_name)
 txi.salmon <- tximport(files, type = "salmon", tx2gene = wormRef::Cel_genes[, c("transcript_name", "wb_id")])
 head(txi.salmon$counts)
 
-#checking the data graphically
+#checking the data graphically with the log representation of counts
 logcounts <- log1p(txi.salmon$counts)
 head(logcounts)
+
+par(mfrow = c(1,3))
 plot(logcounts[,1], logcounts[,2], 
      main = "WT1 vs WT2", xlab = "WT1", ylab = "WT2")
-
-
-#log representation of counts
-logcounts <- log1p(txi.salmon$counts)
-
-par(mfrow = c(1,2))
-plot(logcounts[, 1], logcounts[, 2], 
-     main = "1 vs 2", xlab = "1", ylab = "2")
-
-plot(logcounts[, 1], logcounts[, 5], 
-     main = "1 vs 5", xlab = "1", ylab = "5")
+plot(logcounts[, 1], logcounts[, 7], 
+     main = "WT1 vs alg11", xlab = "WT1", ylab = "alg11")
+plot(logcounts[, 1], logcounts[, 4], 
+     main = "WT1 vs alg51", xlab = "WT1", ylab = "alg51")
 
 #plotting variance vs mean expression for the dataset
+par(mfrow = c(1,1))
 vargenes <- apply(logcounts, 1, var)
 avggenes <- apply(logcounts, 1, mean)
 
