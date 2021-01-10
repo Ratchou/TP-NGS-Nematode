@@ -23,8 +23,8 @@ summary(res5_p_Ordered)
 
 #number of genes for which the adjusted p-value is under 0.05
 
-sum(res1_p_Ordered$padj < 0.05, na.rm=TRUE)
-sum(res5_p_Ordered$padj < 0.05, na.rm=TRUE)
+sum(res1_p_Ordered$padj < 0.05, na.rm=TRUE) #for alg1 2422
+sum(res5_p_Ordered$padj < 0.05, na.rm=TRUE) #for alg5 109
 
 #plotting the results
 par(mfrow = c(1,2))

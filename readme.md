@@ -29,6 +29,18 @@ However, *C. elegans* is a fast developing organism (65 hours), thus, a classic 
 
 ### R and R packages
 * R version 4.0.3
+* devtools version 2.3.2
+[https://www.r-project.org/nosvn/pandoc/devtools.html](https://www.r-project.org/nosvn/pandoc/devtools.html)
+* limma version 3.46.0
+[https://bioconductor.org/packages/release/bioc/html/limma.html](https://bioconductor.org/packages/release/bioc/html/limma.html)
+* tximport version 1.18.0
+[https://bioconductor.org/packages/release/bioc/html/tximport.html](https://bioconductor.org/packages/release/bioc/html/tximport.html)
+* RAPToR version 1.1.4
+[https://github.com/LBMC/RAPToR](https://github.com/LBMC/RAPToR)
+* wormRef version 0.4.0
+[https://github.com/LBMC/wormRef](https://github.com/LBMC/wormRef)
+* DESeq2 version 1.30.0
+[https://bioconductor.org/packages/release/bioc/html/DESeq2.html](https://bioconductor.org/packages/release/bioc/html/DESeq2.html)
 
 ### OS
 The analysis was performed on Ubuntu 20.04 LTS.
@@ -81,3 +93,27 @@ It was indexed using the `index` option of `salmon` (`transcriptome_download.sh`
 
 Transcript expression quantification was performed using the `salmon` tool (see `salmon.sh` script), letting `salmon` automatically detect the library type of sequencing reads (`-lA` option), and giving as input the index previously generated on the transcriptome data and the two trimmed files generated for each sample.
 The output data can analysis can be seen [here](https://github.com/Ratchou/TP-NGS-Nematode/blob/master/multiqc_report3.html). 
+
+## Differential expression analysis
+
+### Data import with `tximport`
+The differential expression analysis was run using the matrix of counts generated previously.
+The matrix of counts was imported using the `tximport`  package in R [https://wormbase.org/tools/enrichment/tea/tea.cgi](https://wormbase.org/tools/enrichment/tea/tea.cgi). 
+The corresponding code can be found in the `data import with tximport script`.
+The tximport function was run with the arguments 
+* `type='salmon'` to indicate that the input data is salmon data
+* `tx2gene = wormRef::Cel_genes[, c("transcript_name", "wb_id")]`: this argument allows to match the gene and the gene id generated during the salmon analysis. Here we use the reference file from wormRef for *C. elegans*.
+
+### Differential expression analysis with DESeq2
+A differential expression analysis was run using the R package `DESeq2`. The corresponding code can be found in the script `DESeq analysis`.
+The `DESeq` function of DESeq2 was applied to a `dds`object containing the dataset imported in the previous step in a DESeq2 format. The results were selected for an alpha cutoff of 0.05 as in the cited article. 
+We found 2422 genes for which the adjusted p-value for differential expression was under 0.05 between WT and *alg1*, and 109 between WT and *alg5*.
+These genes are represented in the following graph.
+<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/DESeq2%20plots.png" alt="DESeq2 analysis. Blue dots represent genes showing significant differences in expression." width="50%"/>
+
+### GO terms analysis
+
+##ANalysis of developmental effects on the differential expression analysis using RAPToR
+
+
+## Suggested changes
