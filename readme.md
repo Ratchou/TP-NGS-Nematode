@@ -110,7 +110,8 @@ A differential expression analysis was run using the R package `DESeq2`. The cor
 The `DESeq` function of DESeq2 was applied to a `dds`object containing the dataset imported in the previous step in a DESeq2 format. The results were selected for an alpha cutoff of 0.05 as in the cited article. 
 We found 2422 genes for which the adjusted p-value for differential expression was under 0.05 between WT and *alg1*, and 109 between WT and *alg5*.
 These genes are represented in the following graph. Blue dots represent genes showing significant differences in expression.
-<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/DESeq2%20plots.png" alt="DESeq2 analysis. Blue dots represent genes showing significant differences in expression." width="50%"/>
+
+<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/DESeq2%20plots.png" alt="DESeq2 analysis. Blue dots represent genes showing significant differences in expression." width="100%"/>
 
 ### GO terms analysis
 Following the DESeq2 analysis, lists of upregulated and downregulated genes were generated and submitted to a GO term analysis on the [Wormbase tool](https://wormbase.org/tools/enrichment/tea/tea.cgi). 
@@ -135,4 +136,5 @@ This can be visualized in the following graph.
 
 Genes differentially expressed only in the experimental data would align on the y=0 line.
 
-## Suggested changes
+## How to get rid of developmental bias?
+Thus, we see that the developmental changes potentially have an important impact on the results cited in the paper. To distinguish both it might be possible to perform a differential expression analysis on data normalized to the reference sample (for example, by dividing the counts for each gene in the experimental sample by the counts for each gene on the reference sample).

@@ -25,7 +25,7 @@ boxplot(ae_data$age.estimates[,1]~strains,
         xlab = "Strains",
         ylab = "Estimated age (hours post hatching)",
         ylim = c(42, 46),
-        names= c("WT", "alg-1(gk214)X", "alg-5(tm1163)I"))
+        names= c("WT", "alg-1(gk214)X", "alg-5"))
 points(ae_data$age.estimates[,1]~strains, lwd=2)
 
 
