@@ -108,7 +108,7 @@ The tximport function was run with the arguments
 ### Differential expression analysis with DESeq2
 A differential expression analysis was run using the R package `DESeq2`. The corresponding code can be found in the script `DESeq analysis`.
 The `DESeq` function of DESeq2 was applied to a `dds`object containing the dataset imported in the previous step in a DESeq2 format. The results were selected for an alpha cutoff of 0.05 as in the cited article. 
-We found 2422 genes for which the adjusted p-value for differential expression was under 0.05 between WT and *alg1*, and 109 between WT and *alg5*.
+We found 2422 genes (1035 upregulated, 1387 downregulated) for which the adjusted p-value for differential expression was under 0.05 between WT and *alg1*, and 109 (42 upregulated and 67 downregulated) between WT and *alg5*.
 These genes are represented in the following graph. Blue dots represent genes showing significant differences in expression.
 
 <img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/DESeq2%20plots.png" alt="DESeq2 analysis. Blue dots represent genes showing significant differences in expression." width="100%"/>
@@ -122,13 +122,13 @@ For *alg1*, a number of categories are associated with molting, life cycle, or d
 ## Analysis of developmental effects on the differential expression analysis using RAPToR
 As explained above, a mutation may have a specific effect on a number of actually significant targets, but the changes in the expression of these, in turn, might lead to changes in developmental timing, resulting in a broad modification of the gene expression pattern. 
 To try to separate the effects of the mutation for this potential developmental bias, we used the package RAPToR, which estimates the developmental age of each sample against a reference (`RAPToR` script).
-The reference dataset was here built from wormRef with the `prepare_refdata` function. We chose `"Cel_larv_YA"` stage from the wormRef base according to the ages stated in the cited reference, and `n.inter=600`.
+The reference dataset was here built from wormRef with the `prepare_refdata` function. We chose `"Cel_larv_YA"` stage from the wormRef base according to the ages stated in the cited reference (L4), and `n.inter=600`.
 The age of the experimental dataset was estimated with the `ae` function, which we ran on the abundances from the salmon data imported with tximport. 
 The results are shown in the plot below.
 
-<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/Estimated%20age.png" alt="Estimated age." width="50%"/>
+<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/Estimated%20age.png" alt="Estimated age." width="70%"/>
 
-Once this analysis performed, one can estimate the change between two reference samples (`getrefTP` function of the `RAPToR` script) for two studied lines, and compute the correlation with the change experimentally observed between the two samples (`refCompare` function of the `RAPToR` script). 
+Once this analysis performed, one can estimate the change between two reference samples using a linear model (`getrefTP` function of the `RAPToR` script) for two studied lines, and compute the correlation with the change experimentally observed between the two samples (`refCompare` function of the `RAPToR` script). 
 For *alg1*, we found a correlation coefficient r=0.528 , and for *alg5*, r=0.322.
 This can be visualized in the following graph.
 
