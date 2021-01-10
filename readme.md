@@ -108,12 +108,21 @@ The tximport function was run with the arguments
 A differential expression analysis was run using the R package `DESeq2`. The corresponding code can be found in the script `DESeq analysis`.
 The `DESeq` function of DESeq2 was applied to a `dds`object containing the dataset imported in the previous step in a DESeq2 format. The results were selected for an alpha cutoff of 0.05 as in the cited article. 
 We found 2422 genes for which the adjusted p-value for differential expression was under 0.05 between WT and *alg1*, and 109 between WT and *alg5*.
-These genes are represented in the following graph.
+These genes are represented in the following graph. Blue dots represent genes showing significant differences in expression.
 <img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/DESeq2%20plots.png" alt="DESeq2 analysis. Blue dots represent genes showing significant differences in expression." width="50%"/>
 
 ### GO terms analysis
+Following the DESeq2 analysis, lists of upregulated and downregulated genes were generated and submitted to a GO term analysis on the [Wormbase tool](https://wormbase.org/tools/enrichment/tea/tea.cgi). 
+Associated results tables and terms can be viewed in the `GO analysis` folder. 
+As in the cited article, *alg5* presented few differentially expressed genes and the GO analysis did not provide a lot of statistically significant categories. 
+For *alg1*, a number of categories are associated with molting, life cycle, or defense response, which are vast categories potentially influenced by impairements or delays in development due to the mutation. To try to investigate the influence of the developmental effects, we used the `RAPToR` package.
 
-##ANalysis of developmental effects on the differential expression analysis using RAPToR
-
+## Analysis of developmental effects on the differential expression analysis using RAPToR
+As explained above, a mutation may have a specific effect on a number of actually significant targets, but the changes in the expression of these, in turn, might lead to changes in developmental timing, resulting in a broad modification of the gene expression pattern. 
+To try to separate the effects of the mutation for this potential developmental biaias, we used the package RAPToR, which estimates the developmental age of each sample against a reference.
+The reference dataset was here built from wormRef with the `prepare_refdata` function. We chose `"Cel_larv_YA"` stage from the wormRef base according to the ages stated in the cited reference, and `n.inter=600`.
+The age of the experimental dataset was estimated with the `ae` function, which we ran on the abundances from the salmon data imported with tximport. 
+The results are shown in the plot below.
+<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/Estimated%20age.png" alt="Estimated age." width="50%"/>
 
 ## Suggested changes

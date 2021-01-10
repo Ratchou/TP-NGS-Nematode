@@ -14,7 +14,7 @@ ref_dataset <- prepare_refdata("Cel_larv_YA", "wormRef", n.inter = 600)
 ##Estimating the age of the experimental dataset by comparison to the reference dataset
 ae_data <- ae(samp = txi.salmon$abundance, refdata = ref_dataset$interpGE, ref.time_series = ref_dataset$time.series)
 
-#Organising the data by groups
+#Organizing the data by groups
 strains <- factor(sample_names$strain, levels = c("WT", "alg-1","alg-5"))
 
 #Plotting the results
