@@ -15,32 +15,33 @@ res_alg5_WT <- results(dds, name = "strain_alg.5_vs_WT", alpha = 0.05)
 res_alg1_WT <- results(dds, name = "strain_alg.1_vs_WT", alpha = 0.05)
 
 #order the results
-res5_p_Ordered <- res[order(res_alg5_WT$pvalue),]
-res1_p_Ordered <- res[order(res_alg1_WT$pvalue),]
+res5_p_Ordered <- res_alg5_WT[order(res_alg5_WT$pvalue),]
+res1_p_Ordered <- res_alg1_WT[order(res_alg1_WT$pvalue),]
 
 summary(res1_p_Ordered)
 summary(res5_p_Ordered)
 
 #number of genes for which the adjusted p-value is under 0.05
-sum(res_alg1_WT$padj < 0.05, na.rm=TRUE)
-sum(res_alg5_WT$padj < 0.05, na.rm=TRUE)
+
+sum(res1_p_Ordered$padj < 0.05, na.rm=TRUE)
+sum(res5_p_Ordered$padj < 0.05, na.rm=TRUE)
 
 #plotting the results
 par(mfrow = c(1,2))
-plotMA(res_alg1_WT, ylim=c(-13,13), main="alg-1 vs WT")
-plotMA(res_alg5_WT, ylim=c(-13,13), main="alg-5(tm1163) vs WT")
+plotMA(res_alg1_WT, ylim=c(-13,13), main="alg-1 vs WT", 
+       ylab="log(FoldChange)", xlab="Mean of normalized counts")
+plotMA(res_alg5_WT, ylim=c(-13,13), main="alg-5(tm1163) vs WT", 
+       ylab="log(FoldChange)", xlab="Mean of normalized counts")
 
 #printing the list of genes included in the analysis
+write.table(cbind(rownames(res1_p_Ordered)), row.names = F, col.names = F, quote = FALSE,
+            file="all_genes.csv")
 
-
-#printing the subset of results which pass the adjusted p-value of 0.05
+#printing the subset of results which pass the adjusted p-value of 0.05 in a text file
 resSig1_DR <- subset(res1_p_Ordered, (padj < 0.05 & log2FoldChange < 0))
 resSig1_UR <- subset(res1_p_Ordered, (padj < 0.05 & log2FoldChange > 0))
 resSig5_DR <- subset(res5_p_Ordered, (padj < 0.05 & log2FoldChange < 0))
 resSig5_UR <- subset(res5_p_Ordered, (padj < 0.05 & log2FoldChange > 0))
-
-write.table(cbind(rownames(res1_p_Ordered)), row.names = F, col.names = F, quote = FALSE,
-            file="all_genes.csv")
 write.table(cbind(rownames(resSig1_DR)), row.names = F, col.names = F, quote = FALSE,
           file="alg1_downregulated_genes.csv")
 write.table(cbind(rownames(resSig1_UR)), row.names = F, col.names = F, quote = FALSE,
