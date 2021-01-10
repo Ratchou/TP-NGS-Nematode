@@ -131,7 +131,7 @@ Once this analysis performed, one can estimate the change between two reference 
 For *alg1*, we found a correlation coefficient r=0.528 , and for *alg5*, r=0.322.
 This can be visualized in the following graph.
 
-<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/Correlation%20plots%20RAPToR.png" alt="Correlation between change for age references and change for samples." width="50%"/>
+<img src="https://github.com/Ratchou/TP-NGS-Nematode/blob/master/Correlation%20plots%20RAPToR.png" alt="Correlation between change for age references and change for samples." width="100%"/>
 
 Genes differentially expressed only in the experimental data would align on the y=0 line.
 
